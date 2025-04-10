@@ -1,92 +1,375 @@
 import { useState } from 'react';
-import { X, Download, FileText } from 'lucide-react';
+import { X, FileText } from 'lucide-react';
 
 interface BrochureModalProps {
   isOpen: boolean;
   onClose: () => void;
-  category?: string; // Add category prop to determine which brochures to show
+  category?: string;
 }
 
 const BrochureModal = ({ isOpen, onClose, category = 'default' }: BrochureModalProps) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [selectedBrochure, setSelectedBrochure] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [downloadingTitle, setDownloadingTitle] = useState('');
 
   // Global Finance Education brochures
   const globalFinanceBrochures = [
     {
-      id: 'global-finance-overview',
-      title: 'Global Finance Education Overview',
-      fileSize: '3.2 MB',
-      path: '/brochures/global-finance-overview.pdf',
+      id: 'Annexure-1-CHARTERED-ACCOUNTANCY',
+      title: 'Annexure-1-CHARTERED-ACCOUNTANCY',
+      fileSize: '2.56 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-1-CHARTERED-ACCOUNTANCY.pdf',
       available: true
     },
     {
-      id: 'finance-degree-programs',
-      title: 'Finance Degree Programs',
-      fileSize: '2.8 MB',
-      path: '/brochures/finance-degree-programs.pdf',
+      id: 'Annexure-2-COMPANY-SECRETARY',
+      title: 'Annexure-2-COMPANY-SECRETARY',
+      fileSize: '1.45 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-2-COMPANY-SECRETARY.pdf',
       available: true
     },
     {
-      id: 'international-finance-courses',
-      title: 'International Finance Courses',
+      id: 'Annexure-4-CFA',
+      title: 'Annexure-4-CFA',
+      fileSize: '1.45 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-4-CFA.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-5-CMT',
+      title: 'Annexure-5-CMT',
       fileSize: '1.9 MB',
-      path: '/brochures/international-finance-courses.pdf',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-5-CMT.pdf',
       available: true
-    }
+    },
+    {
+      id: 'Annexure-6-CFP',
+      title: 'Annexure-6-CFP',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-6-CFP.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-7-CAIA',
+      title: 'Annexure-7-CAIA',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-7-CAIA.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-8-CQF',
+      title: 'Annexure-8-CQF',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-8-CQF.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-9-EPAT',
+      title: 'Annexure-9-EPAT',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-9-EPAT.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-10-FRM',
+      title: 'Annexure-10-FRM',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-10-FRM.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-11-CPA',
+      title: 'Annexure-11-CPA',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-11-CPA.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-12-advanced-quantitive-and-algorithm-trading',
+      title: 'Annexure-12-advanced-quantitive-and-algorithm-trading',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-12-advanced-quantitive-and-algorithm-trading.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-13-CIA',
+      title: 'Annexure-13-CIA',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-13-CIA',
+      available: true
+    },
+    {
+      id: 'Annexure-14-CIMA',
+      title: 'Annexure-14-CIMA',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-14-CIMA.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-15-ACCA',
+      title: 'Annexure-15-ACCA',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-15-ACCA.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-16-CIIA',
+      title: 'Annexure-16-CIIA',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-16-CIIA.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-17-CPM',
+      title: 'Annexure-17-CPM',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-17-CPM.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-18-CTM',
+      title: 'Annexure-18-CTM',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-18-CTM.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-19-INVESTMENT-BANKING',
+      title: 'Annexure-19-INVESTMENT-BANKING',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-19-INVESTMENT-BANKING.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-20-CAIIB',
+      title: 'Annexure-20-CAIIB',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-20-CAIIB.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-21-IFTA',
+      title: 'Annexure-21-IFTA',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-21-IFTA.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-22-NYIF',
+      title: 'Annexure-22-NYIF',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-22-NYIF.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-23-CFI',
+      title: 'Annexure-23-CFI',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-23-CFI.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-24-INVESTOPEDIA',
+      title: 'Annexure-24-INVESTOPEDIA',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-24-INVESTOPEDIA.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-25-26-27-AAFM',
+      title: 'Annexure-25-26-27-AAFM',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-25-26-27-AAFM.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-28-NCFM',
+      title: 'Annexure-28-NCFM',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-28-NCFM.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-30-NCDEX-NICR',
+      title: 'Annexure-30-NCDEX-NICR',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-30-NCDEX-NICR.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-31-MCX-MCCP',
+      title: 'Annexure-31-MCX-MCCP',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-31-MCX-MCCP.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-32-NSE-ACADEMY',
+      title: 'Annexure-32-NSE-ACADEMY',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-32-NSE-ACADEMY.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-33-BSE-COURSES',
+      title: 'Annexure-33-BSE-COURSES',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-33-BSE-COURSES.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-34-legal-study-of-finance',
+      title: 'Annexure-34-legal-study-of-finance',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-34-legal-study-of-finance.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-35-govt.-jobs-for-commerce-students',
+      title: 'Annexure-35-govt.-jobs-for-commerce-students',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-35-govt.-jobs-for-commerce-students.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-36-masters-in-acturial-science',
+      title: 'Annexure-36-masters-in-acturial-science',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-36-masters-in-acturial-science.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-38-tally-gst-tdsexcel-income-tax',
+      title: 'Annexure-38-tally-gst-tdsexcel-income-tax',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-38-tally-gst-tdsexcel-income-tax.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-40-other-masters-and-phd-programs-in-finance',
+      title: 'Annexure-40-other-masters-and-phd-programs-in-finance',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-40-other-masters-and-phd-programs-in-finance.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-40-other-masters-and-phd-programs-in-finance',
+      title: 'Annexure-40-other-masters-and-phd-programs-in-finance',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-40-other-masters-and-phd-programs-in-finance.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-41-JUDICIARY-AND-OTHER-LEGAL-STUDIES',
+      title: 'Annexure-41-JUDICIARY-AND-OTHER-LEGAL-STUDIES',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-41-JUDICIARY-AND-OTHER-LEGAL-STUDIES.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-42-ENGLISH-LANGUAGE',
+      title: 'Annexure-42-ENGLISH-LANGUAGE',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-42-ENGLISH-LANGUAGE.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-43-BANKING-AND-INSURANCE-PROFESSIONAL',
+      title: 'Annexure-43-BANKING-AND-INSURANCE-PROFESSIONAL',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-43-BANKING-AND-INSURANCE-PROFESSIONAL.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-44-LEGAL-STUDY-COMPREHENSIVE',
+      title: 'Annexure-44-LEGAL-STUDY-COMPREHENSIVE',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-44-LEGAL-STUDY-COMPREHENSIVE.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-46-GOVT.-JOBS',
+      title: 'Annexure-46-GOVT.-JOBS',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-46-GOVT.-JOBS.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-47-ACCOUNTS-AND-TAX-PROFESSIONAL',
+      title: 'Annexure-47-ACCOUNTS-AND-TAX-PROFESSIONAL',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-47-ACCOUNTS-AND-TAX-PROFESSIONAL.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-48-international-quality-professional',
+      title: 'Annexure-48-international-quality-professional',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-48-international-quality-professional.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-49-academic',
+      title: 'Annexure-49-academic',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-49-academic.pdf',
+      available: true
+    },
+    {
+      id: 'Annexure-50-Dual-degree-for',
+      title: 'Annexure-50-Dual-degree-for',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annexure-50-Dual-degree-for.pdf',
+      available: true
+    },
+    {
+      id: 'Annnexure-3-CMA',
+      title: 'Annnexure-3-CMA',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/Annnexure-3-CMA.pdf',
+      available: true
+    },
+    {
+      id: 'COMPREHENSIVE-FINANCE-EDUCATION',
+      title: 'COMPREHENSIVE-FINANCE-EDUCATION',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/COMPREHENSIVE-FINANCE-EDUCATION.pdf',
+      available: true
+    },
+    {
+      id: 'The-future-of-finance-skills-and-technologies-3',
+      title: 'The-future-of-finance-skills-and-technologies-3',
+      fileSize: '1.9 MB',
+      path: '/brochures/mahasambhitclinetpdfs/globalfinanceeducationintiative/The-future-of-finance-skills-and-technologies-3.pdf',
+      available: true
+    },
   ];
+  
 
   // Financial Services brochures
   const financialServicesBrochures = [
     {
-      id: 'financial-services-overview',
+      id: 'POWER-POINT-PRESENTATION-FINANCIAL-SERVICES',
       title: 'MAHASAMVIT Financial Services Overview',
-      fileSize: '2.6 MB',
-      path: '/brochures/financial-services-overview.pdf',
+      path: '/brochures/mahasambhitclinetpdfs/financialservices-wealthmanagement/POWER-POINT-PRESENTATION-FINANCIAL-SERVICES.pdf',
       available: true
     },
-    {
-      id: 'portfolio-management-guide',
-      title: 'Portfolio Management Guide',
-      fileSize: '1.8 MB',
-      path: '/brochures/portfolio-management-guide.pdf',
-      available: true
-    },
-    {
-      id: 'wealth-creation-strategies',
-      title: 'Wealth Creation Strategies',
-      fileSize: '2.2 MB',
-      path: '/brochures/wealth-creation-strategies.pdf',
-      available: true
-    }
+    
   ];
 
   // Money Research brochures
   const moneyResearchBrochures = [
     {
-      id: 'money-research-methodologies',
-      title: 'Money Research Methodologies',
-      fileSize: '2.1 MB',
-      path: '/brochures/money-research-methodologies.pdf',
+      id: 'KeyGlobalEconomicIndicators-1-1',
+      title: 'KeyGlobalEconomicIndicators-1-1',
+      path: '/brochures/mahasambhitclinetpdfs/moneyreserach/KeyGlobalEconomicIndicators-1-1.pdf',
       available: true
     },
     {
-      id: 'investment-analysis-tools',
-      title: 'Investment Analysis Tools',
-      fileSize: '1.7 MB',
-      path: '/brochures/investment-analysis-tools.pdf',
+      id: 'POWER-POINT-PRESENTATION-MONEY-RESEARCH.pdf',
+      title: 'POWER-POINT-PRESENTATION-MONEY-RESEARCH',
+      path: '/brochures/mahasambhitclinetpdfs/moneyreserach/POWER-POINT-PRESENTATION-MONEY-RESEARCH.pdf',
       available: true
     },
-    {
-      id: 'market-trends-report',
-      title: 'Market Trends Report 2025',
-      fileSize: '3.5 MB',
-      path: '/brochures/market-trends-report.pdf',
-      available: true
-    }
   ];
 
   // Financial Research brochures
@@ -94,47 +377,41 @@ const BrochureModal = ({ isOpen, onClose, category = 'default' }: BrochureModalP
     {
       id: 'financial-research-services',
       title: 'Financial Research Services Guide',
-      fileSize: '2.3 MB',
       path: '/brochures/financial-research-services.pdf',
       available: true
-    },
-    {
-      id: 'equity-research-handbook',
-      title: 'Equity Research Handbook',
-      fileSize: '2.8 MB',
-      path: '/brochures/equity-research-handbook.pdf',
-      available: true
-    },
-    {
-      id: 'economic-analysis-framework',
-      title: 'Economic Analysis Framework',
-      fileSize: '1.9 MB',
-      path: '/brochures/economic-analysis-framework.pdf',
-      available: true
     }
+    // {
+    //   id: 'equity-research-handbook',
+    //   title: 'Equity Research Handbook',
+    //   path: '/brochures/equity-research-handbook.pdf',
+    //   available: true
+    // },
+    // {
+    //   id: 'economic-analysis-framework',
+    //   title: 'Economic Analysis Framework',
+    //   path: '/brochures/economic-analysis-framework.pdf',
+    //   available: true
+    // }
   ];
 
   // Business Consultancy brochures
   const businessConsultancyBrochures = [
     {
-      id: 'business-consulting-services',
-      title: 'Business Consulting Services',
-      fileSize: '2.4 MB',
-      path: '/brochures/business-consulting-services.pdf',
+      id: 'complete-list-of-project-report-1.pdf',
+      title: 'complete-list-of-project-report-1.pdf',
+      path: '/brochures/mahasambhitclinetpdfs/globalbusinessindustryandprojects/complete-list-of-project-report-1.pdf',
       available: true
     },
     {
-      id: 'startup-growth-guide',
-      title: 'Startup Growth Guide',
-      fileSize: '1.8 MB',
-      path: '/brochures/startup-growth-guide.pdf',
+      id: 'E-Commerce-Projects-2.pdf',
+      title: 'E-Commerce-Projects-2.pdf',
+      path: '/brochures/mahasambhitclinetpdfs/globalbusinessindustryandprojects/E-Commerce-Projects-2.pdf',
       available: true
     },
     {
-      id: 'business-transformation-strategies',
-      title: 'Business Transformation Strategies',
-      fileSize: '2.1 MB',
-      path: '/brochures/business-transformation-strategies.pdf',
+      id: 'sez.pdf',
+      title: 'sez.pdf',
+      path: '/brochures/mahasambhitclinetpdfs/globalbusinessindustryandprojects/sez.pdf',
       available: true
     }
   ];
@@ -142,112 +419,107 @@ const BrochureModal = ({ isOpen, onClose, category = 'default' }: BrochureModalP
   // Job Consultancy brochures
   const jobConsultancyBrochures = [
     {
-      id: 'career-development-guide',
-      title: 'Career Development Guide',
-      fileSize: '1.9 MB',
-      path: '/brochures/career-development-guide.pdf',
+      id: 'Immigration-Service-1',
+      title: 'Immigration-Service-1',
+      path: '/brochures/mahasambhitclinetpdfs/jobconsultancyandhumanresources/Immigration-Service-1.pdf',
       available: true
     },
     {
-      id: 'job-market-analysis',
-      title: 'Job Market Analysis 2025',
-      fileSize: '2.5 MB',
-      path: '/brochures/job-market-analysis.pdf',
+      id: 'satisfied-job-2',
+      title: 'satisfied-job-2',
+      path: '/brochures/mahasambhitclinetpdfs/jobconsultancyandhumanresources/satisfied-job-2.pdf',
       available: true
     },
-    {
-      id: 'resume-interview-handbook',
-      title: 'Resume & Interview Handbook',
-      fileSize: '1.6 MB',
-      path: '/brochures/resume-interview-handbook.pdf',
-      available: true
-    }
+   
   ];
 
   // Agro Projects brochures
   const agroProjectsBrochures = [
     {
-      id: 'agricultural-investment-opportunities',
-      title: 'Agricultural Investment Opportunities',
-      fileSize: '2.7 MB',
-      path: '/brochures/agricultural-investment-opportunities.pdf',
+      id: '1.-A-Project-Report-on-Agri-input-supply-centre-1-5',
+      title: '1.-A-Project-Report-on-Agri-input-supply-centre-1-5',
+      path: '/brochures/mahasambhitclinetpdfs/agroprojects/1.-A-Project-Report-on-Agri-input-supply-centre-1-5.pdf',
       available: true
     },
     {
-      id: 'sustainable-farming-guide',
-      title: 'Sustainable Farming Guide',
-      fileSize: '3.1 MB',
-      path: '/brochures/sustainable-farming-guide.pdf',
+      id: '2.-Processing-Of-Cocoa-and-Products-of-cocoa-1-2',
+      title: '2.-Processing-Of-Cocoa-and-Products-of-cocoa-1-2',
+      path: '/brochures/mahasambhitclinetpdfs/agroprojects/2.-Processing-Of-Cocoa-and-Products-of-cocoa-1-2.pdf',
       available: true
     },
     {
-      id: 'agro-business-models',
-      title: 'Agro-Business Models',
-      fileSize: '2.2 MB',
-      path: '/brochures/agro-business-models.pdf',
+      id: 'agri-projects-details',
+      title: 'agri-projects-details',
+      path: '/brochures/mahasambhitclinetpdfs/agroprojects/agri-projects-details.pdf',
       available: true
-    }
+    },
+    {
+      id: 'AGROTECH-PROJECTS-1',
+      title: 'AGROTECH-PROJECTS-1',
+      path: '/brochures/mahasambhitclinetpdfs/agroprojects/AGROTECH-PROJECTS-1.pdf',
+      available: true
+    },
+    {
+      id: 'Millets-1',
+      title: 'Millets-1',
+      path: '/brochures/mahasambhitclinetpdfs/agroprojects/Millets-1.pdf',
+      available: true
+    },
+    {
+      id: 'Soya-Paneer-1-1',
+      title: 'Soya-Paneer-1-1',
+      path: '/brochures/mahasambhitclinetpdfs/agroprojects/Soya-Paneer-1-1.pdf',
+      available: true
+    },
+    {
+      id: 'VEGAN-RECIPES-2-1',
+      title: 'VEGAN-RECIPES-2-1',
+      path: '/brochures/mahasambhitclinetpdfs/agroprojects/VEGAN-RECIPES-2-1.pdf',
+      available: true
+    },
+   
   ];
 
   // Media & Entertainment brochures
   const mediaEntertainmentBrochures = [
     {
-      id: 'media-entertainment-investments',
-      title: 'Media & Entertainment Investments',
-      fileSize: '2.5 MB',
-      path: '/brochures/media-entertainment-investments.pdf',
+      id: 'MEDIA-AND-ENTERTAINMENT-PROJECTS-1-1-2',
+      title: 'MEDIA-AND-ENTERTAINMENT-PROJECTS-1-1-2',
+      path: '/brochures/mahasambhitclinetpdfs/mediaand-enmtertaitment/MEDIA-AND-ENTERTAINMENT-PROJECTS-1-1-2.pdf',
       available: true
     },
-    {
-      id: 'digital-media-trends',
-      title: 'Digital Media Trends 2025',
-      fileSize: '2.9 MB',
-      path: '/brochures/digital-media-trends.pdf',
-      available: true
-    },
-    {
-      id: 'entertainment-industry-analysis',
-      title: 'Entertainment Industry Analysis',
-      fileSize: '3.2 MB',
-      path: '/brochures/entertainment-industry-analysis.pdf',
-      available: true
-    }
+   
   ];
 
-  // Default brochures (original set)
+  // Default brochures
   const defaultBrochures = [
     {
       id: 'dual-degree-professionals',
       title: 'Dual Degree for Highly Skilled Professionals',
-      fileSize: '56.4 KB',
       path: '/brochures/dual-degree-professionals.pdf',
       available: true
     },
     {
       id: 'finance-courses',
       title: 'Finance Courses Brochure',
-      fileSize: '2.3 MB',
-      path: '#', // Would be replaced with actual path when available
+      path: '#',
       available: false
     },
     {
       id: 'accounting-programs',
       title: 'Accounting Programs Brochure',
-      fileSize: '1.8 MB',
       path: '#',
       available: false
     },
     {
       id: 'banking-courses',
       title: 'Banking and Insurance Programs',
-      fileSize: '3.2 MB',
       path: '#',
       available: false
     },
     {
       id: 'phd-programs',
       title: 'PhD and Research Programs',
-      fileSize: '2.5 MB',
       path: '#',
       available: false
     }
@@ -279,45 +551,29 @@ const BrochureModal = ({ isOpen, onClose, category = 'default' }: BrochureModalP
 
   const brochures = getBrochuresByCategory();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+  const handleBrochureClick = (brochure: any) => {
+    if (brochure.available) {
+      setDownloadingTitle(brochure.title);
+      
+      // Create and trigger download
+      const link = document.createElement('a');
+      link.href = brochure.path;
+      link.download = `${brochure.title}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
 
-    // Find the selected brochure
-    const brochure = brochures.find(b => b.id === selectedBrochure);
+      // Show success message
+      setShowSuccessMessage(true);
 
-    if (brochure && brochure.available) {
-      // Simulate a download delay
+      // Hide success message after 2 seconds
       setTimeout(() => {
-        // Create a download link
-        const link = document.createElement('a');
-        link.href = brochure.path;
-        link.download = `${brochure.title}.pdf`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        // Show success message
-        setShowSuccessMessage(true);
-
-        // Reset form after 2 seconds
-        setTimeout(() => {
-          setName('');
-          setEmail('');
-          setSelectedBrochure('');
-          setIsSubmitting(false);
-          setShowSuccessMessage(false);
-          onClose();
-        }, 2000);
-      }, 1000);
+        setShowSuccessMessage(false);
+        onClose();
+      }, 2000);
     } else {
-      // If the brochure is not available, just show a message
-      alert(`Thank you ${name}! The selected brochure will be emailed to you shortly.`);
-      setName('');
-      setEmail('');
-      setSelectedBrochure('');
-      setIsSubmitting(false);
-      onClose();
+      // For unavailable brochures
+      alert(`The ${brochure.title} will be available soon!`);
     }
   };
 
@@ -333,7 +589,7 @@ const BrochureModal = ({ isOpen, onClose, category = 'default' }: BrochureModalP
             </svg>
           </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Thank You!</h2>
-          <p className="text-gray-600 mb-4">Your brochure is downloading now.</p>
+          <p className="text-gray-600 mb-4">{downloadingTitle} is downloading now.</p>
         </div>
       </div>
     );
@@ -352,101 +608,32 @@ const BrochureModal = ({ isOpen, onClose, category = 'default' }: BrochureModalP
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6">
-          <div className="mb-4">
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-              Your Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-              placeholder="John Doe"
-              required
-            />
-          </div>
-
-          <div className="mb-6">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-              Email Address
-            </label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-              placeholder="john@example.com"
-              required
-            />
-          </div>
-
-          <div className="mb-6">
-            <p className="block text-sm font-medium text-gray-700 mb-3">
-              Select a Brochure
-            </p>
-            <div className="space-y-3">
-              {brochures.map((brochure) => (
-                <div
-                  key={brochure.id}
-                  className={`p-3 border rounded-lg cursor-pointer flex items-center ${
-                    selectedBrochure === brochure.id
-                      ? 'border-orange-500 bg-orange-50'
-                      : brochure.available
-                        ? 'border-gray-200 hover:bg-gray-50'
-                        : 'border-gray-200 opacity-75'
-                  }`}
-                  onClick={() => brochure.available && setSelectedBrochure(brochure.id)}
-                >
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                    selectedBrochure === brochure.id
-                      ? 'bg-orange-100 text-orange-600'
-                      : 'bg-gray-100 text-gray-500'
-                  }`}>
-                    <FileText className="w-5 h-5" />
-                  </div>
-                  <div className="ml-3 flex-1">
-                    <p className="font-medium text-gray-800">{brochure.title}</p>
-                    <p className="text-sm text-gray-500">
-                      PDF • {brochure.fileSize}
-                      {!brochure.available && <span className="text-orange-500 ml-2">(Coming Soon)</span>}
-                    </p>
-                  </div>
-                  {selectedBrochure === brochure.id && (
-                    <div className="w-5 h-5 bg-orange-500 rounded-full"></div>
-                  )}
+        <div className="p-6">
+          <div className="space-y-3">
+            {brochures.map((brochure) => (
+              <div
+                key={brochure.id}
+                className={`p-3 border rounded-lg cursor-pointer flex items-center ${
+                  brochure.available
+                    ? 'border-gray-200 hover:bg-gray-50'
+                    : 'border-gray-200 opacity-75'
+                }`}
+                onClick={() => handleBrochureClick(brochure)}
+              >
+                <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 text-gray-500">
+                  <FileText className="w-5 h-5" />
                 </div>
-              ))}
-            </div>
+                <div className="ml-3 flex-1">
+                  <p className="font-medium text-gray-800">{brochure.title}</p>
+                  <p className="text-sm text-gray-500">
+                    {!brochure.available && <span className="text-orange-500">Coming Soon</span>}
+                    {brochure.available && <span className="text-green-500">Available</span>}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
-
-          <button
-            type="submit"
-            disabled={!name || !email || !selectedBrochure || isSubmitting}
-            className={`w-full py-3 px-4 rounded-lg flex items-center justify-center ${
-              !name || !email || !selectedBrochure || isSubmitting
-              ? 'bg-gray-300 cursor-not-allowed text-gray-500'
-              : 'bg-orange-600 hover:bg-orange-700 text-white'
-            }`}
-          >
-            {isSubmitting ? (
-              <span className="flex items-center">
-                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                Processing...
-              </span>
-            ) : (
-              <>
-                <Download className="w-5 h-5 mr-2" />
-                Download Brochure
-              </>
-            )}
-          </button>
-        </form>
+        </div>
       </div>
     </div>
   );

@@ -33,7 +33,7 @@ export default function Navbar() {
       children: [
         { path: '/global-finance', label: 'Global Finance Education' },
         { path: '/financial-services', label: 'Financial Services' },
-        { path: '/financial-research', label: 'Financial Research' },
+        // { path: '/financial-research', label: 'Financial Research' },
         { path: '/money-research', label: 'Money Research' },
         { path: '/business-consultancy', label: 'Business Consultancy' },
         { path: '/job-consultancy', label: 'Job Consultancy' },

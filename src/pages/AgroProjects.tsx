@@ -19,7 +19,7 @@ const AgroProjects = () => {
     {
       number: "01",
       title: "Hydroponic Farm",
-      image: "https://images.unsplash.com/photo-1626810635364-1ff332781cd6?auto=format&fit=crop&q=80"
+      image: "https://lh4.googleusercontent.com/proxy/8TrCSN0SU8Inh_XX8WWgSXoGMcOvmuAW8DW3piA1GR3XdYAqDPdQZvTG1UVYN9F100a7uIN4y3pogaDiel8m6ZBQj4DBkwEUETa9iZlz"
     },
     {
       number: "02",
@@ -39,32 +39,28 @@ const AgroProjects = () => {
     {
       number: "05",
       title: "Jamun Cultivation",
-      image: "https://images.unsplash.com/photo-1642414998277-e7e95762d55c?auto=format&fit=crop&q=80"
+      image: "https://img.khetivyapar.com/images/blogs/1709124309-jamun-cultivation-benefits-and-good-profit-complete-information.jpg"
     },
+    
     {
       number: "06",
-      title: "Sunflower Cultivation",
-      image: "https://images.unsplash.com/photo-1593591513709-9c3392b071ca?auto=format&fit=crop&q=80"
+      title: "Safflower Cultivation",
+      image: "https://www.apnikheti.com/upload/crops/33idea99safflower.jpg"
     },
     {
       number: "07",
-      title: "Safflower Cultivation",
-      image: "https://images.unsplash.com/photo-1583849222644-a56069fc5407?auto=format&fit=crop&q=80"
+      title: "High-tech Soyabean Cultivation",
+      image: "https://kj1bcdn.b-cdn.net/media/37980/soybean-4.jpg"
     },
     {
       number: "08",
-      title: "High-tech Soyabean Cultivation",
-      image: "https://images.unsplash.com/photo-1558818061-19517daece0a?auto=format&fit=crop&q=80"
+      title: "Sesame Cultivation",
+      image: "https://img.khetivyapar.com/images/news/1703067886-sesame-seed-flower-tree-field.jpg"
     },
     {
       number: "09",
-      title: "Sesame Cultivation",
-      image: "https://images.unsplash.com/photo-1586265249248-d0329c5fad44?auto=format&fit=crop&q=80"
-    },
-    {
-      number: "10",
       title: "Mushroom Cultivation",
-      image: "https://images.unsplash.com/photo-1595921108322-4a168590fc2e?auto=format&fit=crop&q=80"
+      image: "https://www.mushroomoffice.com/wp-content/uploads/2019/07/150818-boek-mushroom-office-lr-121-951x1024.jpg"
     }
   ];
 
@@ -135,13 +131,13 @@ const AgroProjects = () => {
       title: "ETF Millets",
       description: "India produces all the nine commonly known millets and is the largest producer and the second largest exporter of millets in the world. Millets are termed as Nutri-cereals because of their high nutritional qualities and also a crop suited for the changing climate. It has been an integral part of diet in the past owing to its nutritional, functional and nutraceutical properties.",
       details: "Though millets are known as super food, the consumption and also the production were declined over the past decades and millet processing neglected. The main reason behind this is the lack of awareness of its nutritional properties, low knowledge on the method of cooking, non-availability of suitable processing technologies or machinery, non-availability of Ready to Eat (RTE) and Ready to Cook (RTC) products besides millets being perishable with low shelf life and the processing and cooking being laborious, and time-consuming. A step towards to create demand and to promote millets from farm to plate, ICAR-lndian Institute of Millets Research (IIMR) has taken an initiation and developed diversified millet recipes for breakfast, lunch, snacks, beverages and etc. to include in our daily diet. These tasty and healthy millet recipes will increase the consumption can also reduce the malnutrition in the general public. Millet promotion can also be done through Public funded schemes like ICDS and Mid-Day Meal programmes.",
-      image: "https://images.unsplash.com/photo-1586201375761-83865001e8c6?auto=format&fit=crop&q=80"
+      image: "https://vibrantliving.in/cdn/shop/files/FoxtailMillet.png?v=1731059360"
     },
     {
       title: "Stevia Farming",
       description: "Stevia as the healthiest sweetener with many medicinal properties is a wonderful gift from nature. Its true potential was discovered by the ancient wisdom of a warrior race living in the rain forests of South America.",
       details: "Modern science brought the benefits of Stevia to the common people. Tireless works of countless scientists and technologists made the benefits of Stevia accessible to us. Now we have pretty standardized knowledge of the cultivation technique of Stevia, its extraction and purification process and application.",
-      image: "https://images.unsplash.com/photo-1621955542498-031dff490acc?auto=format&fit=crop&q=80"
+      image: "https://www.apnikheti.com/upload/crops/7365idea99STEVIA.jpg"
     },
     {
       title: "Vegan Recipes",
@@ -153,7 +149,7 @@ const AgroProjects = () => {
       title: "Soya Milk",
       description: "Soy beverages are consumed because of the increased availability of soy, and the scientific facts that prove the many health benefits of the beans; including lowering blood cholesterol and reducing the risk of certain cancers.",
       details: "Additionally, soy beverages are consumed as a replacement for lesser-healthy drinks because of higher nutrition content. Soybean-based foods, apart from being a complete source of protein, also contain other important nutrients, such as fiber, vitamin B and omega3 fatty acids. All these nutrients play an important role in the growth of infants, fetal growth in pregnant women, and provide various other benefits for children and adults alike. The rising health consciousness in the developing and developed regions is driving the soy beverages market. It is a healthy alternative to meat and other animal products and hence, is a good source of protein for vegetarians.",
-      image: "https://images.unsplash.com/photo-1559722585-2ba4cb99dbae?auto=format&fit=crop&q=80"
+      image: "https://images.immediate.co.uk/production/volatile/sites/30/2023/12/soy-milk-and-beans-2c1e109.jpg?resize=440%2C230"
     }
   ];
 
@@ -217,7 +213,7 @@ const AgroProjects = () => {
             <div className="flex flex-col md:flex-row gap-6 items-start">
               <div className="w-full md:w-2/5">
                 <img
-                  src="https://images.unsplash.com/photo-1504868584283-28856f57de72?auto=format&fit=crop&q=80"
+                  src="https://images.immediate.co.uk/production/volatile/sites/30/2023/12/soy-milk-and-beans-2c1e109.jpg?resize=440%2C230"
                   alt="Soya Milk"
                   className="w-full h-64 object-cover rounded-lg shadow-md"
                 />
@@ -237,7 +233,7 @@ const AgroProjects = () => {
             <div className="flex flex-col md:flex-row gap-6 items-start">
               <div className="w-full md:w-2/5">
                 <img
-                  src="https://images.unsplash.com/photo-1586201375761-83865001e8c6?auto=format&fit=crop&q=80"
+                  src="https://vibrantliving.in/cdn/shop/files/FoxtailMillet.png?v=1731059360"
                   alt="Millets"
                   className="w-full h-64 object-cover rounded-lg shadow-md"
                 />
@@ -277,7 +273,7 @@ const AgroProjects = () => {
             <div className="flex flex-col md:flex-row gap-6 items-start">
               <div className="w-full md:w-2/5">
                 <img
-                  src="https://images.unsplash.com/photo-1621955542498-031dff490acc?auto=format&fit=crop&q=80"
+                  src="https://www.apnikheti.com/upload/crops/7365idea99STEVIA.jpg"
                   alt="Stevia Farming"
                   className="w-full h-64 object-cover rounded-lg shadow-md"
                 />

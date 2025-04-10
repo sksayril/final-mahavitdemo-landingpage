@@ -11,11 +11,11 @@ export default function Home() {
       alt: "Sustainable Farming"
     },
     {
-      url: "https://images.unsplash.com/photo-1592982537447-6f2a6a0c8b1b",
+      url: "https://content.jdmagicbox.com/comp/def_content/organic-food-retailers/organic-food-retailers8-organic-food-retailers-8-ht6qi.jpg",
       alt: "Organic Produce"
     },
     {
-      url: "https://images.unsplash.com/photo-1595855759920-86582396756c",
+      url: "https://freeeway.com/wp-content/uploads/2023/04/IoT-in-agriculture-%E2%80%93-6-smart-farming-examples-1.png",
       alt: "Smart Agriculture"
     },
     {
@@ -27,7 +27,7 @@ export default function Home() {
       alt: "Modern Agriculture"
     },
     {
-      url: "https://images.unsplash.com/photo-1585513502117-4b931bb09db8",
+      url: "https://higronics.com/assets/front/higronics/images/res-banner/res-hydroponic-vertical-farming-banner.jpg",
       alt: "Vertical Farming"
     }
   ];
